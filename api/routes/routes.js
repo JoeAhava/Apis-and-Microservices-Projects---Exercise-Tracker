@@ -11,7 +11,7 @@ module.exports = {
       res.send("log new exercise");
     })
     
-    app.route('/api/exercise/log?:userId&:from]&:to&:limit')
+    app.route('/api/exercise/log')
     .get((req,res) => {
       res.json({"result": req.query});
     })
