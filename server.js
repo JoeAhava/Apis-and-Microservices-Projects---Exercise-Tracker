@@ -1,3 +1,4 @@
+const routes = require('./api/routes/routes').routes;
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
+routes(app);
 
 // Not found middleware
 app.use((req, res, next) => {
