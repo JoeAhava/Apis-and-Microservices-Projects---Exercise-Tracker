@@ -3,7 +3,8 @@ module.exports = {
   routes: function(app){
     app.route('/api/exercise/new-user')
     .post((req,res) => {
-      res.josn({});
+      let username = req.body.username;
+      res.json({username});
     })
     
     app.route('/api/exercise/add')
