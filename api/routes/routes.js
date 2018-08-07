@@ -3,12 +3,12 @@ module.exports = {
   routes: function(app){
     app.route('/api/exercise/new-user')
     .post((req,res) => {
-      res.send("add new user");
+      res.josn({});
     })
     
     app.route('/api/exercise/add')
     .post((req,res) => {
-      res.send("log new exercise");
+      res.json({});
     })
     
     app.route('/api/exercise/log')
