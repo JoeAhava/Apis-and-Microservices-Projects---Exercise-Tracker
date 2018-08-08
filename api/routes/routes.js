@@ -4,10 +4,7 @@ module.exports = {
   
   routes: function(app){
     app.route('/api/exercise/new-user')
-    .post((req,res) => {
-      let username = req.body.username;
-      res.json({username});
-    })
+    .post(saveUser);
     
     app.route('/api/exercise/add')
     .post((req,res) => {
