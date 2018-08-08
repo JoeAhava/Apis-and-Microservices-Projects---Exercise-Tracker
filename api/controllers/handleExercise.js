@@ -5,27 +5,46 @@ const User = require('../models/userModel').User;
 
 const addExercise = (req,res) => {
   
-  User.findById((req.body.userId), (err, user) => {
+  const userId = req.body.userId;
+  const description = req.body.description;
+  const duration = parseInt(req.body.duration);
+  const date = req.body.date;
+  
+  const exercise = {
+    userId: userId,
+    description: description,
+    duration: duration,
+    date: date,
+  }
+  
+  User.findById((userId), (err, user) => {
     if(err){
       res.send(err);
     } else {
-      console.log(user);
+      
+      Exercise.create(exercise, (err, data) => {
+        
+        if(err){
+          res.send(err);
+        } else {
+          
+          user.exercise.push(data.id);
+          User.
+        }
+      })
     }
   })
 
   
-//   const userId = req.body.userId;
-//   const description = req.body.description;
-//   const duration = parseInt(req.body.duration);
-//   const date = req.body.date;
+//   
   
-//   const exercise = {
+  const exercise = {
     
-//     userId: userId,
-//     description: description,
-//     duration: duration,
-//     date: date,
-//   }
+    userId: userId,
+    description: description,
+    duration: duration,
+    date: date,
+  }
   
 //   Exercise.create( exercise, (err, data) => {
 //     if(err) {
