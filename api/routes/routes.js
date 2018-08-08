@@ -1,4 +1,5 @@
 const saveUser = require('../controllers/handleUser').saveUser;
+const addExercise = require('../controllers/handleExercise').addExercise;
 
 module.exports = {
   
@@ -7,9 +8,7 @@ module.exports = {
     .post(saveUser);
     
     app.route('/api/exercise/add')
-    .post((req,res) => {
-      res.json({});
-    })
+    .post(addExercise);
     
     app.route('/api/exercise/log')
     .get((req,res) => {
