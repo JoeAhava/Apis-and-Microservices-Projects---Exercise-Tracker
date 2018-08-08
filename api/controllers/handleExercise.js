@@ -10,17 +10,19 @@ const addExercise = (req,res) => {
   const duration = parseInt(req.body.duration);
   const date = req.body.date;
   
-  const exercise = {
-    userId: userId,
-    description: description,
-    duration: duration,
-    date: date,
-  }
+  
   
   User.findById((userId), (err, user) => {
     if(err){
       res.send(err);
     } else {
+      
+      const exercise = {
+        userId: user.id,
+        description: description,
+        duration: duration,
+        date: date,
+      }
       
       Exercise.create(exercise, (err, data) => {
         
@@ -28,31 +30,11 @@ const addExercise = (req,res) => {
           res.send(err);
         } else {
           
-          user.exercise.push(data.id);
-          User.
+          res.json(data);
         }
       })
     }
   })
-
-  
-//   
-  
-  const exercise = {
-    
-    userId: userId,
-    description: description,
-    duration: duration,
-    date: date,
-  }
-  
-//   Exercise.create( exercise, (err, data) => {
-//     if(err) {
-//       res.send(err)
-//     } else {
-//       res.json(data);
-//     }
-//   })
                 
 }
 module.exports = {
