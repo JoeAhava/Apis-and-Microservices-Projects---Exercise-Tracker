@@ -1,3 +1,5 @@
+const saveUser = require('../controllers/handleUser').saveUser;
+
 module.exports = {
   
   routes: function(app){

@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
-const User = require('../models/userModels');
-const saveUser = function(username){
-  User.find({"username": username}, (err, username) => {
+const User = require('../models/userModel').User;
+const saveUser = function(req, res){
+  User.find({"username": req.body.username}, (err, username) => {
     if(!username.length){
       User.create({"username": username}, (err, data) => {
         if(err){
-          console.log(err)
+          res.send(err);
         } else {
-          return data;
+          res.json(data);
         }
       })
+    } else {
+      res.send("username already taken")
     }
   })
 }
+
+module.exports = { saveUser: saveUser}
