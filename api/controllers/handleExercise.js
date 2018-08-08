@@ -44,13 +44,13 @@ const searchExercise = (req,res) => {
   let to = req.query.to;
   let limit = req.query.limit;
   
-  Exercise.find({user_id: user}, (err, exercises) => {
+  Exercise.find({user_id: user, date: { $gte: Date.parse(Date(from)), $lte: Date.parse(Date(to))}}.limit(limit).exec( (err, exercises) => {
     if(err){
       res.send(err);
     } else {
       res.json(exercises);
     }
-  })
+  }))
   
 
 }
