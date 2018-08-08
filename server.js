@@ -8,6 +8,12 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
 
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("database connected");
+});
+
 app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}))
