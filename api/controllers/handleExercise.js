@@ -8,7 +8,7 @@ const addExercise = (req,res) => {
   const userId = req.body.userId;
   const description = req.body.description;
   const duration = parseInt(req.body.duration);
-  const date = req.body.date;
+  const date = Date.parse(Date(req.body.date));
   
   
   
@@ -37,8 +37,23 @@ const addExercise = (req,res) => {
   })            
 }
 
+const searchExercise = (req,res) => {
+  
+  const user = req.params.userId;
+  let from = req.params.from;
+  let to = req.params.to;
+  let limit = req.params.limit;
+  
+  console.log(user);
+  console.log(from);
+  console.log(to);
+  console.log(limit);
+
+}
+
 module.exports = {
 
-  addExercise: addExercise
+  addExercise: addExercise,
+  searchExercise: searchExercise
 
 }

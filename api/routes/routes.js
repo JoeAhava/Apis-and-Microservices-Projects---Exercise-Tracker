@@ -1,5 +1,6 @@
 const saveUser = require('../controllers/handleUser').saveUser;
 const addExercise = require('../controllers/handleExercise').addExercise;
+const searchExercise = require(''
 
 module.exports = {
   
