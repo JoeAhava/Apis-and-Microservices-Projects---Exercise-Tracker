@@ -18,7 +18,7 @@ const addExercise = (req,res) => {
     } else {
       
       const exercise = {
-        userId: user.id,
+        user: user.id,
         description: description,
         duration: duration,
         date: date,
@@ -34,9 +34,9 @@ const addExercise = (req,res) => {
         }
       })
     }
-  })
-                
+  })            
 }
+
 module.exports = {
 
   addExercise: addExercise
