@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
 
 const Exercise = require('../models/exerciseModel').Exercise;
 
 const addExercise = (req,res) => {
   
-  const userId = ObjectId(req.body.userId);
+  const userId = req.body.userId;
   const description = req.body.description;
-  const duration = req.body.duration;
+  const duration = parseInt(req.body.duration);
   const date = req.body.date;
   
   const exercise = {
