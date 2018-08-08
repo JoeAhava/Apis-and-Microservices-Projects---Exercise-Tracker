@@ -1,6 +1,6 @@
 const saveUser = require('../controllers/handleUser').saveUser;
 const addExercise = require('../controllers/handleExercise').addExercise;
-const searchExercise = require(''
+const searchExercise = require('../controllers/handleExercise').searchExercise;
 
 module.exports = {
   
@@ -12,9 +12,7 @@ module.exports = {
     .post(addExercise);
     
     app.route('/api/exercise/log')
-    .get((req,res) => {
-      res.json({"result": req.query});
-    })
+    .get(searchExercise);
   }
   
 }

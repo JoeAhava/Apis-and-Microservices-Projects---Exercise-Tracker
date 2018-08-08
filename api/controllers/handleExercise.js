@@ -39,15 +39,11 @@ const addExercise = (req,res) => {
 
 const searchExercise = (req,res) => {
   
-  const user = req.params.userId;
-  let from = req.params.from;
-  let to = req.params.to;
-  let limit = req.params.limit;
+  const user = req.query.userId;
+  let from = req.query.from;
+  let to = req.query.to;
+  let limit = req.query.limit;
   
-  console.log(user);
-  console.log(from);
-  console.log(to);
-  console.log(limit);
 
 }
 
