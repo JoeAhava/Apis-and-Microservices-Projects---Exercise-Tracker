@@ -44,11 +44,11 @@ const searchExercise = (req,res) => {
   let to = req.query.to;
   let limit = req.query.limit;
   
-  Exercise.find({user: user}, (err, exercise) => {
+  Exercise.find({user_id: user}, (err, exercises) => {
     if(err){
       res.send(err);
     } else {
-      console.log(exercise);
+      res.json(exercises);
     }
   })
   
