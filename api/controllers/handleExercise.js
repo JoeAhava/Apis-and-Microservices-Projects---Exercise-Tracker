@@ -44,10 +44,19 @@ const searchExercise = (req,res) => {
   let to = (new Date(req.query.to).getTime())+1;
   let limit = parseInt(req.query.limit);
   
-  console.log(from);
-  console.log(to);
-  console.log(limit);
+  if(isNaN(from)){
+    Exercise.findOne({user: user}, (err, exercise) => {
+      if(err){
+        res.send(err);
+      } else {
+        console.log(exercise.date);
+      }
+    })
+  }
   
+  if(isNaN(to)){
+    to = new Date().getTime();
+  }
   
   Exercise.find({user: user, date: { $gt: from, $lt: to}}).limit(limit).exec( (err, exercises) => {
     if(err){
