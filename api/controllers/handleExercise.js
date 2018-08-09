@@ -40,24 +40,16 @@ const addExercise = (req,res) => {
 const searchExercise = (req,res) => {
   
   const user = req.query.userId;
-  let from = (new Date(req.query.from).getTime())-1;
+  let from = (new Date(req.query.from).getTime())-1 || 0;
   let to = (new Date(req.query.to).getTime())+1 || (new Date()).getTime()+1;
   let limit = parseInt(req.query.limit);
-  
-  if(isNaN(from)){
-    Exercise.findOne({user: user}, (err, exercise) => {
-      if(err){
-        res.send("error");
-      } else {
-        from = (exercise.date)-1;
-        console.log(from);
-      }
-    })
-  }
-  
+   
   
   Exercise.find({user: user, date: { $gt: from, $lt: to}}).limit(limit).exec( (err, exercises) => {
-    if(err){
+    if(!exercises.length){
+      res.send("Username invalid!");
+    }
+    else if(err){
       res.send(err);
     } else {
       res.json(exercises);
