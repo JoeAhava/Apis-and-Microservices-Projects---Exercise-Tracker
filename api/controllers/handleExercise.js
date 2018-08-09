@@ -44,7 +44,7 @@ const searchExercise = (req,res) => {
   let to = req.query.to;
   let limit = req.query.limit;
   
-  Exercise.find({user: user}, (err, exercises) => {
+  Exercise.find({user: user, date: { $gte: Date.parse(Date(from)), $lt: Date.parse(Date(to))}}, (err, exercises) => {
     if(err){
       res.send(err);
     } else {
