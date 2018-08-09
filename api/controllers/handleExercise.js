@@ -42,11 +42,11 @@ const searchExercise = (req,res) => {
   const user = req.query.userId;
   let from = (new Date(req.query.from).getTime())-1;
   let to = (new Date(req.query.to).getTime())+1;
-  let limit = req.query.limit;
+  let limit = parseInt(req.query.limit);
   
   
   
-  Exercise.find({user: user, date: { $gt: from, $lt: to}}, (err, exercises) => {
+  Exercise.find({user: user, date: { $gt: from, $lt: to}}.limit(limit), (err, exercises) => {
     if(err){
       res.send(err);
     } else {
