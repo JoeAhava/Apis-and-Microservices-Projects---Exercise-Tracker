@@ -44,8 +44,9 @@ const searchExercise = (req,res) => {
   let to = Date.parse(Date(req.query.to));
   let limit = req.query.limit;
   
-  console.log(from)
-  console.log(to)
+  console.log(req.query);
+  console.log(from);
+  console.log(to);
   
   Exercise.find({user: user, date: { $gt: 10, $lt: 1533735608000}}, (err, exercises) => {
     if(err){
