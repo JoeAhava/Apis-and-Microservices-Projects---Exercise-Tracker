@@ -46,7 +46,7 @@ const searchExercise = (req,res) => {
   
   
   
-  Exercise.find({user: user, date: { $gt: 10, $lt: 1533735608000}}, (err, exercises) => {
+  Exercise.find({user: user, date: { $gt: from, $lt: to}}, (err, exercises) => {
     if(err){
       res.send(err);
     } else {
