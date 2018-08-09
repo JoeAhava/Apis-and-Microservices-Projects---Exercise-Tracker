@@ -41,22 +41,20 @@ const searchExercise = (req,res) => {
   
   const user = req.query.userId;
   let from = (new Date(req.query.from).getTime())-1;
-  let to = (new Date(req.query.to).getTime())+1;
+  let to = (new Date(req.query.to).getTime())+1 || (new Date()).getTime()+1;
   let limit = parseInt(req.query.limit);
   
   if(isNaN(from)){
     Exercise.findOne({user: user}, (err, exercise) => {
       if(err){
-        res.send(err);
+        res.send("error");
       } else {
-        console.log(exercise.date);
+        from = (exercise.date)-1;
+        console.log(from);
       }
     })
   }
   
-  if(isNaN(to)){
-    to = new Date().getTime();
-  }
   
   Exercise.find({user: user, date: { $gt: from, $lt: to}}).limit(limit).exec( (err, exercises) => {
     if(err){
